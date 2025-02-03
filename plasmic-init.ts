@@ -8,5 +8,5 @@ export const PLASMIC = initPlasmicLoader({
     },
   ],
 
-  preview: true,
+  preview: false,
 });

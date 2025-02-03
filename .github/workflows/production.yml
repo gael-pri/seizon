@@ -1,9 +1,9 @@
-name: Deploy to Staging
+name: Deploy to Production
     
 on:
   push:
     branches:
-      - staging
+      - production
 
 jobs:
   build-and-deploy:
@@ -24,7 +24,7 @@ jobs:
         run: |
           echo "date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_ENV
           echo "myapp=seizon" >> $GITHUB_ENV
-          echo "environnement=staging" >> $GITHUB_ENV
+          echo "environnement=production" >> $GITHUB_ENV
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -54,7 +54,7 @@ jobs:
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/${{ env.myapp }}:cache
           cache-to: type=inline
 
-      - name: Login to Docker Hub on Staging Server
+      - name: Login to Docker Hub on Production Server
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.SERVER_IP }} "
             echo $DOCKERHUB_TOKEN | docker login -u $DOCKERHUB_USERNAME --password-stdin
@@ -63,12 +63,12 @@ jobs:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
           
-      - name: Deploy to Staging
+      - name: Deploy to Production
         run: |
           ssh  -o StrictHostKeyChecking=no -T ubuntu@${{ secrets.SERVER_IP }} "
-            cd seizon/staging &&
-            docker compose -f docker-compose.staging.yml pull &&
-            docker compose -f docker-compose.staging.yml up -d
+            cd seizon/production &&
+            docker compose -f docker-compose.production.yml pull &&
+            docker compose -f docker-compose.production.yml up -d
           "
 
     concurrency:
