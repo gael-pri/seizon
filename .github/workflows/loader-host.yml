@@ -54,7 +54,7 @@ jobs:
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/${{ env.myapp }}:cache
           cache-to: type=inline
 
-      - name: Login to Docker Hub on Staging Server
+      - name: Login to Docker Hub on Loader-host Server
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.SERVER_IP }} "
             echo $DOCKERHUB_TOKEN | docker login -u $DOCKERHUB_USERNAME --password-stdin
@@ -63,10 +63,10 @@ jobs:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
           
-      - name: Deploy to Staging
+      - name: Deploy to Loader-host
         run: |
           ssh  -o StrictHostKeyChecking=no -T ubuntu@${{ secrets.SERVER_IP }} "
-            cd tagada/${{ env.environnement }} &&
+            cd ${{ env.myapp }}/${{ env.environnement }} &&
             docker compose -f docker-compose.${{ env.environnement }}.yml pull &&
             docker compose -f docker-compose.${{ env.environnement }}.yml up -d
           "
