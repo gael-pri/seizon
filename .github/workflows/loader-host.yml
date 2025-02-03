@@ -66,9 +66,11 @@ jobs:
       - name: Deploy to Loader-host
         run: |
           ssh -o StrictHostKeyChecking=no -T ubuntu@${{ secrets.SERVER_IP }} '
-            cd "'${{ env.myapp }}'/'${{ env.environnement }}'" &&
-            docker compose -f "docker-compose.'${{ env.environnement }}'.yml" pull &&
-            docker compose -f "docker-compose.'${{ env.environnement }}'.yml" up -d
+            export MYAPP="${{ env.myapp }}"
+            export ENV="${{ env.environnement }}"
+            cd "$MYAPP/$ENV"
+            docker compose -f "docker-compose.$ENV.yml" pull
+            docker compose -f "docker-compose.$ENV.yml" up -d
           '
 
     concurrency:
