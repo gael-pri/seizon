@@ -1,7 +1,7 @@
 name: ${PROJECT_NAME}-${PROJECT_ENVIRONNEMENT}
 services:
   app:
-    image: gael29/${PROJECT_NAME}:${PROJECT_ENVIRONNEMENT}
+    image: ${DOCKERHUB_USERNAME}/${PROJECT_NAME}:${PROJECT_ENVIRONNEMENT}
     container_name: ${PROJECT_NAME}-${PROJECT_ENVIRONNEMENT}
     ports:
       - "${PROJECT_PORT}:3000"
@@ -16,7 +16,7 @@ services:
     restart: unless-stopped
 
 networks:
- ${PROJECT_NAME}-network:
+ seizon-network:
     name: ${PROJECT_NAME}-network
     driver: bridge
     external: true
