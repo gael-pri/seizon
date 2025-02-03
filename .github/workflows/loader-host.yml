@@ -65,11 +65,11 @@ jobs:
           
       - name: Deploy to Loader-host
         run: |
-          ssh  -o StrictHostKeyChecking=no -T ubuntu@${{ secrets.SERVER_IP }} "
-            cd ${{ env.myapp }}/${{ env.environnement }} &&
-            docker compose -f docker-compose.${{ env.environnement }}.yml pull &&
-            docker compose -f docker-compose.${{ env.environnement }}.yml up -d
-          "
+          ssh -o StrictHostKeyChecking=no -T ubuntu@${{ secrets.SERVER_IP }} '
+            cd "'${{ env.myapp }}'/'${{ env.environnement }}'" &&
+            docker compose -f "docker-compose.'${{ env.environnement }}'.yml" pull &&
+            docker compose -f "docker-compose.'${{ env.environnement }}'.yml" up -d
+          '
 
     concurrency:
       group: docker-build-${{ github.ref }}
