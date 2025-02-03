@@ -65,13 +65,11 @@ jobs:
           
       - name: Deploy to Loader-host
         run: |
-          ssh -o StrictHostKeyChecking=no -T ubuntu@${{ secrets.SERVER_IP }} '
-            export MYAPP="${{ env.myapp }}"
-            export ENV="${{ env.environnement }}"
-            cd "$MYAPP/$ENV"
-            docker compose -f "docker-compose.$ENV.yml" pull
-            docker compose -f "docker-compose.$ENV.yml" up -d
-          '
+          ssh  -o StrictHostKeyChecking=no -T ubuntu@${{ secrets.SERVER_IP }} "
+            cd seizon/loader-host &&
+            docker compose -f docker-compose.loader-host.yml pull &&
+            docker compose -f docker-compose.loader-host.yml up -d
+          "
 
     concurrency:
       group: docker-build-${{ github.ref }}
