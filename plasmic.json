@@ -1,0 +1,90 @@
+{
+  "platform": "nextjs",
+  "code": {
+    "lang": "ts",
+    "scheme": "blackbox",
+    "reactRuntime": "classic"
+  },
+  "style": {
+    "scheme": "css-modules",
+    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.css"
+  },
+  "images": {
+    "scheme": "public-files",
+    "publicDir": "../public",
+    "publicUrlPrefix": "/"
+  },
+  "tokens": {
+    "scheme": "theo",
+    "tokensFilePath": "plasmic-tokens.theo.json"
+  },
+  "srcDir": "components",
+  "defaultPlasmicDir": "./plasmic",
+  "projects": [
+    {
+      "projectId": "8hRjffs8nrCTZK26M1tady",
+      "projectApiToken": "65mvWYf59yX0QMlkpawjSTJeZopXbu1nOygki9nXQV05FQQTUGe0FR6Jhv7dWKZbzI7uqOcjItSIcT6RDkw",
+      "projectName": "Seizon",
+      "version": "latest",
+      "cssFilePath": "plasmic/seizon/plasmic.module.css",
+      "components": [
+        {
+          "id": "E1pUUEA1EHHe",
+          "name": "Homepage",
+          "type": "managed",
+          "projectId": "8hRjffs8nrCTZK26M1tady",
+          "renderModuleFilePath": "plasmic/seizon/PlasmicHomepage.tsx",
+          "importSpec": {
+            "modulePath": "../pages/index.tsx"
+          },
+          "cssFilePath": "plasmic/seizon/PlasmicHomepage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/"
+        }
+      ],
+      "icons": [],
+      "images": [
+        {
+          "id": "ZJLIyQwNiw_K",
+          "name": "bandeau.png",
+          "filePath": "../public/plasmic/seizon/images/bandeauPng.png"
+        }
+      ],
+      "indirect": false,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "codeComponents": [
+        {
+          "id": "E5LkzXgl0OB8",
+          "name": "PlasmicHead",
+          "displayName": "hostless-plasmic-head",
+          "componentImportPath": "@plasmicapp/react-web"
+        },
+        {
+          "id": "GikvpBkFGpoL",
+          "name": "Fetcher",
+          "displayName": "plasmic-data-source-fetcher",
+          "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
+        }
+      ],
+      "customFunctions": []
+    }
+  ],
+  "globalVariants": {
+    "variantGroups": [
+      {
+        "id": "yRTS4xT3jqlc",
+        "name": "Screen",
+        "projectId": "8hRjffs8nrCTZK26M1tady",
+        "contextFilePath": "plasmic/seizon/PlasmicGlobalVariant__Screen.tsx"
+      }
+    ]
+  },
+  "wrapPagesWithGlobalContexts": true,
+  "nextjsConfig": {
+    "pagesDir": "../pages"
+  },
+  "cliVersion": "0.1.335",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.335/dist/plasmic.schema.json"
+}
