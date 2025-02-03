@@ -3,7 +3,7 @@ name: Deploy to Loader-host
 on:
   push:
     branches:
-      - dev
+      - loader-host
 
 jobs:
   build-and-deploy:
