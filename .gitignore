@@ -36,3 +36,5 @@ staging/.env
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.npmrc
