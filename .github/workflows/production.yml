@@ -69,9 +69,9 @@ jobs:
       - name: Deploy to Production
         run: |
           ssh  -o StrictHostKeyChecking=no -T ubuntu@${{ secrets.SERVER_IP }} "
-            cd seizon/production &&
-            docker compose -f docker-compose.production.yml pull &&
-            docker compose -f docker-compose.production.yml up -d
+            cd ${{ env.myapp }}/${{ env.environnement }} &&
+            docker compose -f docker-compose.${{ env.environnement }}.yml pull &&
+            docker compose -f docker-compose.${{ env.environnement }}.yml up -d
           "
 
     concurrency:
