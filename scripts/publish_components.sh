@@ -187,7 +187,7 @@ BRANCH_NAME="update-components-$choix_branche"
 echo "🚀 Push de la branche library avant création d'une branche temporaire : $BRANCH_NAME"
 git add .
 git commit -m "$BRANCH_NAME"
-git push origin library
+git push origin local-gael
 
 # Création d'une branche temporaire pour la mise à jour
 echo "🚀 Création d'une branche temporaire : $BRANCH_NAME"
@@ -207,8 +207,8 @@ fi
 # S'assurer que tout est bien suivi par Git
 git add .
 
-git checkout library -- plasmic-library
-git checkout library -- README.MD
+git checkout local-gael -- plasmic-library
+git checkout local-gael -- README.MD
 
 # Supprimer tout du suivi, sauf src/components
 echo "🧹 Suppression des fichiers du suivi Git"
@@ -240,7 +240,7 @@ if [[ -n $(git status --porcelain) ]]; then
 
   git clean -fd
   git clean -fd
-  git checkout library
+  git checkout local-gael
   git branch -D "$BRANCH_NAME"
 
   clear
