@@ -1,0 +1,14 @@
+/* components/ScrollAgency/components/others/TestInput/TestInput.module.css */
+.container {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input {
+  width: 100%;
+  padding: 4px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+}

@@ -1,5 +1,3 @@
-import * as PlasmicLibrary from "@ScrollAgency/plasmic-library";
-import { getComponentProps, type ComponentMeta, mapPropType } from "@ScrollAgency/plasmic-library";
 import { initPlasmicLoader } from "@plasmicapp/loader-nextjs";
 import {
   SupabaseProvider,
@@ -12,37 +10,18 @@ import {
   SupabaseStorageGetSignedUrlMeta,
 } from "plasmic-supabase"
 
+import * as PlasmicLibrary from "./plasmic-library/components"
+
 export const PLASMIC = initPlasmicLoader({
   projects: [
     {
-      id: process.env.NEXT_PUBLIC_PLASMIC_PROJECT_ID!,
-      token: process.env.NEXT_PUBLIC_PLASMIC_PROJECT_TOKEN!,
+      id: process.env.NEXT_PUBLIC_PLASMIC_PROJECT_ID || "",
+      token: process.env.NEXT_PUBLIC_PLASMIC_PROJECT_TOKEN || "",
     },
   ],
 
   preview: true,
 });
-
-// Fonction pour enregistrer un composant dans Plasmic
-function registerComponent(componentName: string) {
-  const component = PlasmicLibrary.components[componentName];
-  const meta = PlasmicLibrary.componentsMeta.find((m) => m.name === componentName) as ComponentMeta;
-
-  if (!component || !meta) {
-    console.error(`Impossible d'enregistrer ${componentName}. Métadonnées ou composant manquant.`);
-    return;
-  }
-
-  const props = getComponentProps(meta);
-  PLASMIC.registerComponent(component, {
-    name: componentName,
-    props,
-    section: meta.section || "Scroll components",
-  });
-}
-
-// Enregistrement des composants dynamiques
-Object.keys(PlasmicLibrary.components).forEach(registerComponent);
 
 //Register global context
 PLASMIC.registerGlobalContext(SupabaseUserGlobalContext, SupabaseUserGlobalContextMeta)
@@ -51,3 +30,24 @@ PLASMIC.registerGlobalContext(SupabaseUserGlobalContext, SupabaseUserGlobalConte
 PLASMIC.registerComponent(SupabaseProvider, SupabaseProviderMeta);
 PLASMIC.registerComponent(SupabaseUppyUploader, SupabaseUppyUploaderMeta);
 PLASMIC.registerComponent(SupabaseStorageGetSignedUrl, SupabaseStorageGetSignedUrlMeta);
+
+// Components from plasmic-library
+// Badges
+PLASMIC.registerComponent(PlasmicLibrary.JamBadge, PlasmicLibrary.JamBadgeMeta);
+
+// Cards
+PLASMIC.registerComponent(PlasmicLibrary.CardSimple, PlasmicLibrary.CardSimpleMeta);
+PLASMIC.registerComponent(PlasmicLibrary.CardComplex, PlasmicLibrary.CardComplexMeta);
+
+// Forms
+PLASMIC.registerComponent(PlasmicLibrary.Checkbox, PlasmicLibrary.CheckboxMeta);
+PLASMIC.registerComponent(PlasmicLibrary.Dropdown, PlasmicLibrary.DropdownMeta);
+PLASMIC.registerComponent(PlasmicLibrary.DropdownMultiSelect, PlasmicLibrary.DropdownMultiSelectMeta);
+PLASMIC.registerComponent(PlasmicLibrary.TextInput, PlasmicLibrary.TextInputMeta);
+PLASMIC.registerComponent(PlasmicLibrary.JamButton, PlasmicLibrary.JamButtonMeta);
+
+// Others
+PLASMIC.registerComponent(PlasmicLibrary.FileUploader, PlasmicLibrary.FileUploaderMeta);
+PLASMIC.registerComponent(PlasmicLibrary.ProgressBar, PlasmicLibrary.ProgressBarMeta);
+PLASMIC.registerComponent(PlasmicLibrary.Toast, PlasmicLibrary.ToastMeta);
+PLASMIC.registerComponent(PlasmicLibrary.Toggle, PlasmicLibrary.ToggleMeta);
