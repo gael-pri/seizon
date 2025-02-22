@@ -230,7 +230,8 @@ git add README.MD
 
 
 # Vérifier si des fichiers ont été ajoutés
-if [[ -n $(git status --porcelain) ]]; then
+if [[ -n $(git ls-files --others --exclude-standard) || -n $(git status --porcelain) ]]; then
+
   echo "📝 Commit des modifications..."
   git commit -m "🚀 Mise à jour des composants dans le dossier plasmic-library"
 
