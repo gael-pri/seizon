@@ -1,4 +1,4 @@
-![Bandeau Seizon](https://loader-host.seizon.fr/bandeau.png)
+![Bandeau Seizon](https://staging.seizon.fr/bandeau.png)
 
 # Seizon
 Cuisinez la nature au rythme des saisons
