@@ -1,4 +1,5 @@
-import type React from "react";
+// biome-ignore lint/style/useImportType: <explanation>
+import * as React from "react";
 import {
   type ButtonHTMLAttributes,
   forwardRef,
@@ -7,7 +8,17 @@ import {
 } from "react";
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
-import Image from "next/image";
+
+let Image: any = (props: any) => <img {...props} />; // Fallback par défaut
+
+if (typeof window !== "undefined") {
+  try {
+    const dynamicRequire = eval("require"); // Empêche Webpack d'analyser `require`
+    Image = dynamicRequire("next/image").default;
+  } catch (error) {
+    console.warn("⚠️ next/image non disponible, fallback sur <img>");
+  }
+}
 
 type HTMLButtonProps = Pick<
   ButtonHTMLAttributes<HTMLButtonElement>,

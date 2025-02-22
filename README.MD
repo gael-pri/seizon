@@ -13,12 +13,11 @@
 | TextInput                      | 0.0.1                | 0.0.1                |
 | Toast                          | 0.0.1                | 0.0.1                |
 | Checkbox                       | 0.0.1                | 0.0.1                |
+| JamButton                      | 0.0.1                | 0.0.1                |
 | FileUploader                   | 0.0.1                | 0.0.1                |
 | Toggle                         | 0.0.1                | 0.0.1                |
-| JamButton                      | N/A                  | 0.0.1                |
 
 
 📍 Résultats de la comparaison :
 
-🛠️  Nouveaux composants (locaux mais absents en distant) :
-- JamButton (0.0.1)
+✅ Les versions locales de vos composants sont à jour !
